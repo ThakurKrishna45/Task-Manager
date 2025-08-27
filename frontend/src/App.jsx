@@ -1,17 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import Login from './pages/Login'
 import Registration from './pages/registration'
-
+import Dashboard from './pages/dashboard'
+import Task from './pages/task'
+import CreateTask from './pages/createTask'
+import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   
   return (
     <>
-     <Registration />
+     <Router>
+       <Routes>
+         <Route path='/' element={<Dashboard />} />
+         <Route path='/login' element={<Login />} />
+         <Route path='/registration' element={<Registration />} />
+         <Route path='/tasks' element={<Task />} />
+         <Route path='/createTask' element={<CreateTask/>}/>
+       </Routes>
+     </Router>
     </>
   )
 }
 
 export default App
+

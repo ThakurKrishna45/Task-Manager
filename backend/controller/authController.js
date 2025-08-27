@@ -1,8 +1,8 @@
   const bcrypt= require('bcrypt');
   const User = require('../models/user');
   const jwt= require('jsonwebtoken');
-//   const dotenv = require('dotenv');
-//   dotenv.config();
+  const dotenv = require('dotenv');
+  dotenv.config();
   
   const signup=async(req,res)=>{
   try {
@@ -61,7 +61,7 @@ const login=async (req, res) => {
   if(!isMatch){
     return res.status(401).json({success: false, message: 'Invalid credential password'});
   }
-  
+    console.log('JWT_SECRET:', process.env.JWT_SECRET);
   const jwtToken=jwt.sign(
     {username: user.username, _id:user._id},
     process.env.JWT_SECRET,
