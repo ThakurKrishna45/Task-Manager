@@ -32,4 +32,24 @@ const createProject = async (req, res) => {
     }
 };
 
-module.exports = { createProject };
+const fetchProjectById = async (req, res) => {
+    try {
+        const projectId = req.params.id;
+        const projects=await Project.find({_id: projectId }).populate('members', 'name email').populate('tasks');
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching projects", error: error.message });
+    }
+};
+
+const fetchProjects = async (req, res) => {
+    try {
+        const userId = req.user._id;  
+        const projects = await Project.find({ members: userId }).populate('members', 'name email').populate('tasks');
+        res.status(200).json(projects);
+    } catch (error) {
+        res.status(500).json({ message: "Error fetching projects", error: error.message });
+    }
+};
+
+module.exports = { createProject, fetchProjectById, fetchProjects };

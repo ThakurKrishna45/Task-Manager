@@ -4,6 +4,7 @@ import Registration from './pages/registration'
 import Dashboard from './pages/dashboard'
 import Task from './pages/task'
 import CreateTask from './pages/createTask'
+import Projects from './pages/projects'
 import {BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
   
@@ -11,7 +12,8 @@ function App() {
     <>
      <Router>
        <Routes>
-         <Route path='/' element={<Dashboard />} />
+         <Route path='/' element={<Projects/>}/>
+         <Route path='/dashboard' element={<Dashboard />} />
          <Route path='/login' element={<Login />} />
          <Route path='/registration' element={<Registration />} />
          <Route path='/tasks' element={<Task />} />
